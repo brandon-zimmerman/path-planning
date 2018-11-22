@@ -14,7 +14,7 @@
 ---
 ## Overview
 
-The C++ project solution is a plans the behavior and trajectory of a vehicle on a simulated highway within the [Udacity simulator](https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).    The starting code provided by Udacity can be found [here](https://github.com/udacity/CarND-Path-Planning-Project).    
+The C++ project solution plans the behavior and trajectory of a vehicle on a simulated highway within the [Udacity simulator](https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).    The starting code provided by Udacity can be found [here](https://github.com/udacity/CarND-Path-Planning-Project).    
 
 A view of the path planner driving the virtual vehicle is below.  
 
@@ -74,7 +74,9 @@ The path planning solution receives the elements described above from the simula
 
 #### Behavior Planner
 
-The image below shows the finite states from Behavior Planning class in the Udacity class.   The behavior planner's job is to create the list of next possible states and then choose the state with the lowest cost.  The finite state machine and cost functions are implemented in the  `successor_states` function ([vehicle.cpp](src/vehicle.cpp) line 71) and the `calculate_cost` function ([cost.cpp](src/cost.cpp) line 74).
+The behavior planner's (`BehaviorPlanner` defined in [behavior_planner.cpp)](src/behavior_planner.cpp) job is to create a list of the vehicle's next possible states and choose the state with the lowest cost.  The planner 's `choose_next_state` function (line 32 of [behavior_planner.cpp)](src/behavior_planner.cpp) receives the vehicle's current position and sensor fusion data (`sensor_fusion`).  It then predicts the future position of the ego vehicle and other vehicles on the road.  These predictions are, in turn, fed to the finite state machine and cost functions implemented in the `Vehicle::successor_states` function ([vehicle.cpp](src/vehicle.cpp) line 71) and the `calculate_cost` function ([cost.cpp](src/cost.cpp) line 74). 
+
+The image below from the Udacity classroom shows the states determined by the `BehaviorPlanner` class.   
 
 ![Finite States](images/finite-states.png)
 
@@ -82,7 +84,7 @@ The image below shows the finite states from Behavior Planning class in the Udac
 
 #### Trajectory Planner
 
-The trajectory generator function `generate_next_trajectory`  ([trajectory_generator.cpp](src/trajectory_generator.cpp) line 8) generates a smooth transition trajectory which does not cause the vehicle to exceed the acceleration, jerk, and velocity limits.  It does this by first calculating a few points where we want the car to move based on the lane and velocity returned by the behavior planner and then uses the spline library ([spline.h](src/spline.h)) to calculate a smooth set of waypoints.
+The trajectory generator function `generate_next_trajectory`  ([trajectory_generator.cpp](src/trajectory_generator.cpp) line 8) generates a smooth transition trajectory which does not exceed the vehicle's acceleration, jerk, and velocity limits.  It does this by first calculating a few points where we want the car to move based on the lane and velocity returned by the behavior planner and then uses the spline library ([spline.h](src/spline.h)) to calculate a smooth set of waypoints.
 
 ## Dependencies
 
