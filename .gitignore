@@ -1,0 +1,9 @@
+/ide_profiles/VisualStudio/.vs/*
+/ide_profiles/VisualStudio/Debug/*
+/ide_profiles/VisualStudio/Win32/*
+ide_profiles/VisualStudio/x64/*
+ide_profiles/VisualStudio/path-planning.vcxproj.user
+README1.md
+path-planning.zip
+/.vscode/launch.json
+/.vscode/tasks.json
