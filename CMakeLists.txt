@@ -1,4 +1,4 @@
-project(Path_Planning)
+project(Path-Planning)
 
 cmake_minimum_required (VERSION 3.5)
 
@@ -19,6 +19,6 @@ link_directories(/usr/local/Cellar/libuv/1.11.0/lib)
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
-add_executable(Path_Planning ${sources})
+add_executable(Path-Planning ${sources})
 
-target_link_libraries(Path_Planning z ssl uv uWS)
+target_link_libraries(Path-Planning z ssl uv uWS)
